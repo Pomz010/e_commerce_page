@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="public/css/main.css">
+  <title>Frontend Mentor | E-commerce product page</title>
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+  
+</head>
+<body>
+
+  <!-- Main Nav -->
+  <nav class="nav-container">
+    <div class="__left-nav-container">
+      <span class="hamburger-menu">
+        <i class="bi bi-list" id="burger-menu"></i>
+      </span>
+      <a href="#" class="nav__logo-container"><img class="__logo" src="./public/img/logo.svg" alt=""></a>
+    </div>
+    <ul class="nav__list-menu">
+      <li class="__list">Collections</li>
+      <li class="__list">Men</li>
+      <li class="__list">Women</li>
+      <li class="__list">About</li>
+      <li class="__list">Contact</li>
+    </ul>
+    <div class="__right-nav-container">
+      <span class="__cart-container">
+        <i class="bi bi-cart3" id="cart">
+          <span class="cart-notification" id="cart-notification"></span>
+        </i>
+      </span>
+      <span class="__account-avatar-container"><img class="__account-image-avatar" id="avatar" src="./public/img/image-avatar.webp" alt=""></span>
+    </div>
+  </nav><!-- End of Main Nav -->
+
+  <!-- Modal backround -->
+  <section class="modal-background" id="modal-background"></section>
+
+  <!-- Hidden nav menu -->
+  <section class="hidden__nav-container" id="hidden-nav-menu">
+    <span class="hidden__nav--close-btn"><i class="bi bi-x" id="close-btn"></i></span>
+    <ul class="hidden__nav-list-container">
+      <li class="hidden__nav-list">Collections</li>
+      <li class="hidden__nav-list">Men</li>
+      <li class="hidden__nav-list">Women</li>
+      <li class="hidden__nav-list">About</li>
+      <li class="hidden__nav-list">Contact</li>
+    </ul>
+  </section><!-- End of Hidden Nav Menu -->
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <section class="product__gallery-container">
+      <div class="product__preview" id="product-preview">
+        <img class="__preview-image" src="./public/img/image-product-1.webp" alt="Large image preview of sneaker">
+        <div class="__preview__arrow-container">
+          <span class="left-arrow arrow" id="left-arrow"><i class="bi bi-cevron-left"></i></span>
+          <span class="right-arrow arrow" id="right-arrow"><i class="bi bi-chevron-right"></i></span>
+        </div>
+
+        <!-- Cart container -->
+        <section class="cart__status-container" id="cart-container">
+          <h3 class="cart__header" id="cart-header">Cart</h3>
+          <div class="cart__list-container" id="cart-list">
+            <p class="cart__status" id="cart-status">Your cart is empty.</p>
+            <div class="checkout-container" id="checkout-container">
+              <div class="checkout-details" id="checkout-details">
+              <img class="item-thumbnail" id="item-thumbnail" src="./public/img/image-product-1-thumbnail.webp" alt="Checkout item thumbnail image.">
+              <div class="checkout__item">
+                <p class="checkout__item-name">Fall Limited Edition Sneakers</p>
+                <p class="checkout__item-computaion">
+                  <span class="checkout-price-per-item">$125.00 x </span>
+                  <span class="checkout-qty" id="checkout-qty"></span>
+                  <strong class="checkout-price" id="checkout-price"></strong>
+                </p>
+              </div>
+              </div>
+              <button type="button" class="checkout--btn" id="checkout--btn">Checkout</button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="product__thumbnails-container">
+        <span class="__thumbnail-set">
+          <img class="__thumbnails active-preview" id="image-1" src="./public/img/image-product-1-thumbnail.webp" alt="Small image thumbnail 1 out of 4">
+          <img class="__thumbnails" id="image-2" src="./public/img/image-product-2-thumbnail.webp" alt="Small image thumbnail 2 out of 4">
+          <img class="__thumbnails" id="image-3" src="./public/img/image-product-3-thumbnail.webp" alt="Small image thumbnail 3 out of 4">
+          <img class="__thumbnails" id="image-4" src="./public/img/image-product-4-thumbnail.webp" alt="Small image thumbnail 4 out of 4">
+        </span>
+      </div>
+    </section>
+
+    <section class="product__details-container">
+      <span class="__company-name">sneaker company</span>
+      <h2 class="product__details-header">Fall Limited Edition Sneakers</h2>
+      <p class="product__description">These low-profile sneakers are your perfect casual wear companion. Featuring a 
+        durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+      <div class="product__price-info">
+        <div class="__discount-computation">
+          <span class="__discounted-price">$125.00</span>
+          <span class="__discount-percentage">50%</span>
+        </div>
+        <span class="__original-price">$250.00</span>
+      </div>
+      
+      <div class="add-to-cart__section">
+        <div class="__buttons-container">
+          <button class="__subtract-qty--btn"><i class="bi bi-dash" id="minus"></i></button>
+          <span class="__total-qty" id="current-qty">0</span>
+          <button class="__add-qty--btn"><i class="bi bi-plus" id="plus"></i></button>
+        </div>
+        <button type="button" class="__add-to-cart--btn" id="add-to-cart">
+          <span class="__add-to-cart-icon"><i class="bi bi-cart3"></i></i></span>
+          <span class="cta__box-shadow"></span>
+          Add to Cart
+        </button>
+        
+      </div>
+    </section>
+  </main><!-- End of Main Container -->
+
+  <div class="attribution">
+    Coded by <a href="#">Rolly Castillo</a>.
+  </div>
+  <script src="src/js/script.js"></script>
+</body>
+</html>
