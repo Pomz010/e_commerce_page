@@ -24,9 +24,15 @@ const checkoutQtyContainer = document.querySelector('#checkout-qty');
 const checkoutBtn = document.querySelector('#checkout--btn');
 
 // Image slider
-const imagePreview = document.querySelector('#product-preview');
+const productPreview = document.querySelector('#product-preview');
 const arrowLeft = document.querySelector('#left-arrow');
 const arrowRight = document.querySelector('#right-arrow');
+const imageOne = document.querySelector('#image-1');
+const imageTwo = document.querySelector('#image-2');
+const imageThree = document.querySelector('#image-3');
+const imageFour = document.querySelector('#image-4');
+const thumbnails = document.querySelectorAll('.__thumbnails');
+const imagePreview = document.querySelector('#preview-image');
 
 // Add-to-cart section
 const minusQty = document.querySelector('#minus');
@@ -41,7 +47,7 @@ let qty = 0;
 // Add click event listener
 document.addEventListener('click', checkElement);
 function checkElement(e) {
-    console.log(e.target);
+    // console.log(e.target);
     switch(e.target) {
         case hamburger:
           console.log(e.target);
@@ -53,13 +59,16 @@ function checkElement(e) {
             hideNav();
             break;
 
+        case modalBackground:
+            hideNav();
+            break
+
         case cart:
             // console.log(e.target);
             showCart();
             break;
 
         case avatar:
-            console.log(e.target);
             showCart();
             break;
 
@@ -80,38 +89,48 @@ function checkElement(e) {
         case checkoutBtn:
             clearCart();
             break;
+
+        // Targetting image gallery thumbnails
+        case e.target:
+            previewImage(e.target);
+            break;
+
+        case imagePreview:
+            imageModal();
+            break;
     }
 
     // Close modal when user click outside cart container
-    if(e.target === cart || e.target === cartList || e.target === cartHeader) {
+    if(e.target === cart || e.target === avatar || e.target === cartList || e.target === cartHeader) {
         // Do nothing
-    } else if (cartContainer.classList.contains('show-cart') && (e.target !== cart || e.target !== cartList || e.target !== cartHeader)){
+    } else if (cartContainer.classList.contains('show') && (e.target !== cart || e.target !== avatar || e.target !== cartList || e.target !== cartHeader)){
         // Hide cart container
-        cartContainer.classList.remove('show-cart');
+        cartContainer.classList.remove('show');
     }
 }
 
 // Display hamburger nav menu
 function showNav(){
-    modalBackground.classList.add('show-nav');
+    activateModal();
     burgerMenu.classList.add('show-nav');
 }
 
 // Hide hamburger nav menu
 function hideNav() {
-    modalBackground.classList.remove('show-nav');
+    modalBackground.classList.remove('show');
     burgerMenu.classList.remove('show-nav');
 }
 
 // Display Cart
 function showCart() {
-    cartContainer.classList.add('show-cart');
+    console.log('poms');
+    cartContainer.classList.toggle('show');
     if(checkoutQty < 1) {
-        checkoutContainer.classList.add('hide-cart');
-        cartEmpty.classList.remove('hide-cart');
+        checkoutContainer.classList.add('hide');
+        cartEmpty.classList.remove('hide');
     } else {
-        cartEmpty.classList.add('hide-cart');
-        checkoutContainer.classList.remove('hide-cart');
+        cartEmpty.classList.add('hide');
+        checkoutContainer.classList.remove('hide');
     }
 }
 
@@ -149,7 +168,7 @@ function sendToCart() {
         checkoutQtyContainer.textContent = checkoutQty;
 
         // Display total checkout price 
-        checkoutPriceContainer.textContent = `$${checkoutPrice.toFixed(2) * checkoutQty}`;
+        checkoutPriceContainer.textContent = `$${(checkoutPrice * checkoutQty).toFixed(2)}`;
         
         // Update cart notification number
         cartNotification.textContent = checkoutQty;
@@ -169,4 +188,25 @@ function clearCart() {
     checkoutQty = 0;
     cartNotification.classList.remove('cart-qty');
     cartContainer.classList.remove('show-cart');
+}
+
+// Toggles active class for image thumbnails
+function previewImage(target) {
+    for(let i = 0; i !== 4; i++) {
+        if(target === thumbnails[i]) {
+            thumbnails[i].classList.add('active-preview')
+            imagePreview.setAttribute('src', `./public/img/image-product-${i + 1}.webp`);
+        } else {
+            thumbnails[i].classList.remove('active-preview');
+        }
+    }
+}
+
+// Activate Image modal when large preview image is clicked
+function imageModal(){
+    activateModal();
+}
+
+function activateModal() {
+    modalBackground.classList.add('show');
 }

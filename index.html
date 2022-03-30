@@ -17,31 +17,7 @@
   
 </head>
 <body>
-
-  <!-- Main Nav -->
-  <nav class="nav-container">
-    <div class="__left-nav-container">
-      <span class="hamburger-menu">
-        <i class="bi bi-list" id="burger-menu"></i>
-      </span>
-      <a href="#" class="nav__logo-container"><img class="__logo" src="./public/img/logo.svg" alt=""></a>
-    </div>
-    <ul class="nav__list-menu">
-      <li class="__list">Collections</li>
-      <li class="__list">Men</li>
-      <li class="__list">Women</li>
-      <li class="__list">About</li>
-      <li class="__list">Contact</li>
-    </ul>
-    <div class="__right-nav-container">
-      <span class="__cart-container">
-        <i class="bi bi-cart3" id="cart">
-          <span class="cart-notification" id="cart-notification"></span>
-        </i>
-      </span>
-      <span class="__account-avatar-container"><img class="__account-image-avatar" id="avatar" src="./public/img/image-avatar.webp" alt=""></span>
-    </div>
-  </nav><!-- End of Main Nav -->
+<!-- <div class="wrapper"> -->
 
   <!-- Modal backround -->
   <section class="modal-background" id="modal-background"></section>
@@ -60,36 +36,65 @@
 
   <!-- Main Container -->
   <main class="main-container">
+    <!-- Main Nav -->
+  <nav class="nav-container">
+    <div class="__left-nav-container">
+      <span class="hamburger-menu">
+        <i class="bi bi-list" id="burger-menu"></i>
+      </span>
+      <a href="#" class="nav__logo-container"><img class="__logo" src="./public/img/logo.svg" alt=""></a>
+    </div>
+    <ul class="nav__list-menu">
+      <li class="__list">Collections</li>
+      <li class="__list">Men</li>
+      <li class="__list">Women</li>
+      <li class="__list">About</li>
+      <li class="__list">Contact</li>
+    </ul>
+    <div class="__right-nav-container">
+      <span class="__cart-container r-n-container">
+        <i class="bi bi-cart3" id="cart">
+          <span class="cart-notification" id="cart-notification"></span>
+        </i>
+      </span>
+      <span class="__account-avatar-container r-n-container"><img class="__account-image-avatar" id="avatar" src="./public/img/image-avatar.webp" alt=""></span>
+
+      <!-- Cart container -->
+      <section class="cart__status-container" id="cart-container">
+        <h3 class="cart__header" id="cart-header">Cart</h3>
+        <div class="cart__list-container" id="cart-list">
+          <p class="cart__status" id="cart-status">Your cart is empty.</p>
+          <div class="checkout-container" id="checkout-container">
+            <div class="checkout-details" id="checkout-details">
+            <img class="item-thumbnail" id="item-thumbnail" src="./public/img/image-product-1-thumbnail.webp" alt="Checkout item thumbnail image.">
+            <div class="checkout__item">
+              <p class="checkout__item-name">Fall Limited Edition Sneakers</p>
+              <p class="checkout__item-computation">
+                <span class="checkout-price-per-item">$125.00 x </span>
+                <span class="checkout-qty" id="checkout-qty"></span>
+                <strong class="checkout-price" id="checkout-price"></strong>
+              </p>
+            </div>
+            </div>
+            <button type="button" class="checkout--btn" id="checkout--btn">Checkout</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </nav><!-- End of Main Nav -->
+
+  <!-- Container for product gallery and product detais -->
+  <div class="wrapper">
+    <!-- Product gallery section -->
     <section class="product__gallery-container">
       <div class="product__preview" id="product-preview">
-        <img class="__preview-image" src="./public/img/image-product-1.webp" alt="Large image preview of sneaker">
+        <img class="__preview-image" id="preview-image" src="./public/img/image-product-1.webp" alt="Large image preview of sneaker">
         <div class="__preview__arrow-container">
-          <span class="left-arrow arrow" id="left-arrow"><i class="bi bi-cevron-left"></i></span>
+          <span class="left-arrow arrow" id="left-arrow"><i class="bi bi-chevron-left"></i></span>
           <span class="right-arrow arrow" id="right-arrow"><i class="bi bi-chevron-right"></i></span>
         </div>
-
-        <!-- Cart container -->
-        <section class="cart__status-container" id="cart-container">
-          <h3 class="cart__header" id="cart-header">Cart</h3>
-          <div class="cart__list-container" id="cart-list">
-            <p class="cart__status" id="cart-status">Your cart is empty.</p>
-            <div class="checkout-container" id="checkout-container">
-              <div class="checkout-details" id="checkout-details">
-              <img class="item-thumbnail" id="item-thumbnail" src="./public/img/image-product-1-thumbnail.webp" alt="Checkout item thumbnail image.">
-              <div class="checkout__item">
-                <p class="checkout__item-name">Fall Limited Edition Sneakers</p>
-                <p class="checkout__item-computaion">
-                  <span class="checkout-price-per-item">$125.00 x </span>
-                  <span class="checkout-qty" id="checkout-qty"></span>
-                  <strong class="checkout-price" id="checkout-price"></strong>
-                </p>
-              </div>
-              </div>
-              <button type="button" class="checkout--btn" id="checkout--btn">Checkout</button>
-            </div>
-          </div>
-        </section>
       </div>
+
       <div class="product__thumbnails-container">
         <span class="__thumbnail-set">
           <img class="__thumbnails active-preview" id="image-1" src="./public/img/image-product-1-thumbnail.webp" alt="Small image thumbnail 1 out of 4">
@@ -98,8 +103,9 @@
           <img class="__thumbnails" id="image-4" src="./public/img/image-product-4-thumbnail.webp" alt="Small image thumbnail 4 out of 4">
         </span>
       </div>
-    </section>
+    </section><!-- End of product gallery-->
 
+    <!-- Product details section -->
     <section class="product__details-container">
       <span class="__company-name">sneaker company</span>
       <h2 class="product__details-header">Fall Limited Edition Sneakers</h2>
@@ -124,14 +130,15 @@
           <span class="cta__box-shadow"></span>
           Add to Cart
         </button>
-        
       </div>
-    </section>
+    </section><!-- End of product details -->
+  </div> <!-- End of wrapper container -->
   </main><!-- End of Main Container -->
 
   <div class="attribution">
     Coded by <a href="#">Rolly Castillo</a>.
   </div>
+<!-- </div> -->
   <script src="src/js/script.js"></script>
 </body>
 </html>
