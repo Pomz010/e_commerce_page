@@ -31,8 +31,23 @@ const imageOne = document.querySelector('#image-1');
 const imageTwo = document.querySelector('#image-2');
 const imageThree = document.querySelector('#image-3');
 const imageFour = document.querySelector('#image-4');
+const thumbnailSet = document.querySelector('#thumbnail-set');
 const thumbnails = document.querySelectorAll('.__thumbnails');
 const imagePreview = document.querySelector('#preview-image');
+let imageCounter = 0;
+
+// Modal image slider
+const modalGallery = document.querySelector('#modal-gallery');
+const modalPreviewImage = imagePreview.getAttribute('src');
+const modalPreview = document.querySelector('#modal-preview-image');
+const modalThumbnails = document.querySelectorAll('.modal__thumbnails');
+const modalImageOne = document.querySelector('#modal-image-1');
+const modalImageTwo = document.querySelector('#modal-image-2');
+const modalImageThree = document.querySelector('#modal-image-3');
+const modalImageFour = document.querySelector('#modal-image-4');
+const modalCloseBtn = document.querySelector('#modal-close');
+const modalLeft = document.querySelector('#modal-left-arrow');
+const modalRight = document.querySelector('#modal-right-arrow');
 
 // Add-to-cart section
 const minusQty = document.querySelector('#minus');
@@ -47,7 +62,7 @@ let qty = 0;
 // Add click event listener
 document.addEventListener('click', checkElement);
 function checkElement(e) {
-    // console.log(e.target);
+    console.log(e.target);
     switch(e.target) {
         case hamburger:
           console.log(e.target);
@@ -91,12 +106,69 @@ function checkElement(e) {
             break;
 
         // Targetting image gallery thumbnails
-        case e.target:
-            previewImage(e.target);
+        case imageOne:
+            previewImage(imageOne);
+            selectModalThumbnail(modalImageOne);
+            break;
+
+        case imageTwo:
+            previewImage(imageTwo);
+            selectModalThumbnail(modalImageTwo);
+            break;
+
+        case imageThree:
+            previewImage(imageThree);
+            selectModalThumbnail(modalImageThree);
+            break;
+
+        case imageFour:
+            previewImage(imageFour);
+            selectModalThumbnail(modalImageFour);
             break;
 
         case imagePreview:
             imageModal();
+            break;
+
+        case modalGallery:
+            removeActiveModal();
+            break;
+
+        case modalCloseBtn:
+            removeActiveModal();
+            break;
+    
+        case arrowLeft:
+            moveLeft()
+            break;
+
+        case arrowRight:
+            moveRight();
+            break;
+
+        // Thumbnail images for modal
+        case modalImageOne:
+            selectModalThumbnail(modalImageOne);
+            break;
+
+        case modalImageTwo:
+            selectModalThumbnail(modalImageTwo);
+            break;
+
+        case modalImageThree:
+            selectModalThumbnail(modalImageThree);
+            break;
+
+        case modalImageFour:
+            selectModalThumbnail(modalImageFour);
+            break;
+
+        case modalLeft:
+            modalMoveLeft()
+            break;
+
+        case modalRight:
+            modalMoveRight();
             break;
     }
 
@@ -193,9 +265,10 @@ function clearCart() {
 // Toggles active class for image thumbnails
 function previewImage(target) {
     for(let i = 0; i !== 4; i++) {
-        if(target === thumbnails[i]) {
-            thumbnails[i].classList.add('active-preview')
+        if(thumbnails[i] === target) {
+            thumbnails[i].classList.add('active-preview');
             imagePreview.setAttribute('src', `./public/img/image-product-${i + 1}.webp`);
+            modalPreview.setAttribute('src', `./public/img/image-product-${i + 1}.webp`);
         } else {
             thumbnails[i].classList.remove('active-preview');
         }
@@ -204,9 +277,97 @@ function previewImage(target) {
 
 // Activate Image modal when large preview image is clicked
 function imageModal(){
-    activateModal();
+    modalGallery.classList.add('show-modal');
+}
+
+// (modal) Large image preview changes when user selects image on thumbnails
+function selectModalThumbnail(mi) {
+    for(let i = 0; i !== 4; i++) {
+        if(modalThumbnails[i] === mi) {
+            modalThumbnails[i].classList.add('active-modal');
+            modalPreview.setAttribute('src', `./public/img/image-product-${i + 1}.webp`);
+        } else {
+            modalThumbnails[i].classList.remove('active-modal');
+        }
+    }
+}
+
+// Removes active thumbnail selection on modal when user clicks on transparent background
+function removeActiveModal() {
+    modalGallery.classList.remove('show-modal');
+    for(let i = 0; i !== 4; i++) {
+        modalThumbnails[i].classList.remove('active-modal');
+    }
 }
 
 function activateModal() {
     modalBackground.classList.add('show');
+}
+
+function moveLeft() {
+    for(let i = 0; i !== 4; i++) {
+        // Finds thumbnail that contains a class of active preview
+        if(thumbnails[i].classList.contains('active-preview')) {
+            // When it reaches thumbnail with index lower than the lowest index available,
+            // -> it activates the last thumbnail with the highest index instead.
+            if(i === 0) {
+                i = 4;
+            }
+
+            // It activates the thumbnail before the thumbnail that 
+            // ->currently contains a class of active-preview,
+            thumbnails[i -= 1].click();
+        }
+    }
+}
+
+function moveRight() {
+    for(let i = 0; i !== 4; i++) {
+        // Finds thumbnail that contains a class of active preview
+        if(thumbnails[i].classList.contains('active-preview')) {
+            // When it reaches thumbnail with index of higher than highest thumbnail index available,
+            // -> it activates the last thumbnail with the lowest index instead 
+            if(i === 3) {
+                i = -1;
+            }
+
+            // It activates the thumbnail after the thumbnail that 
+            // ->currently contains a class of active-preview,
+            thumbnails[i += 1].click();
+        }
+    }
+}
+
+function modalMoveLeft() {
+    for(let i = 0; i !== 4; i++) {
+        // Finds thumbnail that contains a class of active preview
+        if(modalThumbnails[i].classList.contains('active-modal')) {
+            // When it reaches thumbnail with index lower than the lowest index available,
+            // -> it activates the last thumbnail with the highest index instead.
+            if(i === 0) {
+                i = 4;
+            }
+
+            // It activates the thumbnail before the thumbnail that 
+            // ->currently contains a class of active-preview,
+            modalThumbnails[i -= 1].click();
+        }
+    }
+}
+
+function modalMoveRight() {
+    for(let i = 0; i !== 4; i++) {
+        // Finds thumbnail that contains a class of active preview
+        if(modalThumbnails[i].classList.contains('active-modal')) {
+            // When it reaches thumbnail with index of higher than highest thumbnail index available,
+            // -> it activates the last thumbnail with the lowest index instead 
+            if(i === 3) {
+                i = -1;
+            }
+
+            // It activates the thumbnail after the thumbnail that 
+            // ->currently contains a class of active-preview,
+            modalThumbnails[i += 1].click();
+        }
+    }
 }

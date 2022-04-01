@@ -34,6 +34,33 @@
     </ul>
   </section><!-- End of Hidden Nav Menu -->
 
+  <section class="modal__gallery" id="modal-gallery">
+    <div class="modal__preview" id="modal-preview">
+      <span class="modal__close--btn"><i class="bi bi-x-lg" id="modal-close"></i></span>
+      <img class="modal__preview-image" id="modal-preview-image" src="./public/img/image-product-1.webp" alt="Large image preview of sneaker">
+      <div class="modal__preview__arrow-container">
+        <span class="modal-left-arrow arrow" ><i class="bi bi-chevron-left" id="modal-left-arrow"></i></span>
+        <span class="modal-right-arrow arrow" ><i class="bi bi-chevron-right" id="modal-right-arrow"></i></span>
+      </div>
+    </div>
+
+    <div class="modal__thumbnails-container">
+      <span class="modal__overlay">
+        <img class="modal__thumbnails active-modal" id="modal-image-1" src="./public/img/image-product-1-thumbnail.webp" alt="Small image thumbnail 1 out of 4">
+      </span>
+      <span class="modal__overlay">
+        <img class="modal__thumbnails" id="modal-image-2" src="./public/img/image-product-2-thumbnail.webp" alt="Small image thumbnail 2 out of 4">
+      </span>
+      <span class="modal__overlay">
+        <img class="modal__thumbnails" id="modal-image-3" src="./public/img/image-product-3-thumbnail.webp" alt="Small image thumbnail 3 out of 4">
+      </span>
+      <span class="modal__overlay">
+        <img class="modal__thumbnails" id="modal-image-4" src="./public/img/image-product-4-thumbnail.webp" alt="Small image thumbnail 4 out of 4">
+      </span>
+    </div>
+  </section>
+
+
   <!-- Main Container -->
   <main class="main-container">
     <!-- Main Nav -->
@@ -86,17 +113,17 @@
   <!-- Container for product gallery and product detais -->
   <div class="wrapper">
     <!-- Product gallery section -->
-    <section class="product__gallery-container">
+    <section class="product__gallery-container" id="image-gallery">
       <div class="product__preview" id="product-preview">
         <img class="__preview-image" id="preview-image" src="./public/img/image-product-1.webp" alt="Large image preview of sneaker">
         <div class="__preview__arrow-container">
-          <span class="left-arrow arrow" id="left-arrow"><i class="bi bi-chevron-left"></i></span>
-          <span class="right-arrow arrow" id="right-arrow"><i class="bi bi-chevron-right"></i></span>
+          <span class="left-arrow arrow"><i class="bi bi-chevron-left" id="left-arrow"></i></span>
+          <span class="right-arrow arrow"><i class="bi bi-chevron-right" id="right-arrow"></i></span>
         </div>
       </div>
 
       <div class="product__thumbnails-container">
-        <span class="__thumbnail-set">
+        <span class="__thumbnail-set" id="thumbnail-set">
           <img class="__thumbnails active-preview" id="image-1" src="./public/img/image-product-1-thumbnail.webp" alt="Small image thumbnail 1 out of 4">
           <img class="__thumbnails" id="image-2" src="./public/img/image-product-2-thumbnail.webp" alt="Small image thumbnail 2 out of 4">
           <img class="__thumbnails" id="image-3" src="./public/img/image-product-3-thumbnail.webp" alt="Small image thumbnail 3 out of 4">
